@@ -1,0 +1,22 @@
+task hello <<{
+	println 'Hello world!'
+}
+hello.doLast{
+	println "Greetings from the $hello.name task."
+}
+4.times {
+	counter->
+		task "task$counter" <<{
+			println "task number $counter"
+		}
+}
+task0.dependsOn task1,task2, task3
+
+task myTask{
+	ext.name1 = "ddddd"
+}
+task printSomething << {
+	println "$myTask.name1"
+}
+
+defaultTasks 'hello', 'task0'
